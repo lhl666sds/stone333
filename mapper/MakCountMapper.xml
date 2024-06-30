@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.lcserve.mapper.MakCountMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.lcserve.entity.MakCount">
+            <id property="mid" column="mid" jdbcType="INTEGER"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="shipAddress" column="ship_address" jdbcType="VARCHAR"/>
+            <result property="others" column="others" jdbcType="VARCHAR"/>
+            <result property="creatTime" column="creat_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+<!--    <sql id="Base_Column_List">-->
+<!--        mid,nickname,phone,-->
+<!--        ship_address,others,creat_time-->
+<!--    </sql>-->
+</mapper>

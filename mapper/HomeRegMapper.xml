@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.lcserve.mapper.HomeRegMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.lcserve.entity.HomeReg">
+            <id property="reid" column="reid" jdbcType="INTEGER"/>
+            <result property="retital" column="retital" jdbcType="VARCHAR"/>
+            <result property="recont" column="recont" jdbcType="VARCHAR"/>
+    </resultMap>
+
+<!--    <sql id="Base_Column_List">-->
+<!--        reid,retital,recont-->
+<!--    </sql>-->
+</mapper>

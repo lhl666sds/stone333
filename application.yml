@@ -1,0 +1,29 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: lc-serve
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tjy?useSSL=false&useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+file:
+  upload:
+    path: D:\magic
+    allowTypes:             #文件上传允许的类型
+      - image/jpeg
+      - image/png
+      - image/bmp
+      - image/jpg
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

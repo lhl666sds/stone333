@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.lcserve.mapper.WelActsMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.lcserve.entity.WelActs">
+            <id property="wid" column="wid" jdbcType="INTEGER"/>
+            <result property="welname" column="welname" jdbcType="VARCHAR"/>
+            <result property="weldetail" column="weldetail" jdbcType="VARCHAR"/>
+            <result property="welmain" column="welmain" jdbcType="VARCHAR"/>
+            <result property="welfrom" column="welfrom" jdbcType="VARCHAR"/>
+            <result property="welto" column="welto" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+<!--    <sql id="Base_Column_List">-->
+<!--        wid,welname,weldetail,-->
+<!--        welmain,welfrom,welto,-->
+<!--        type-->
+<!--    </sql>-->
+</mapper>

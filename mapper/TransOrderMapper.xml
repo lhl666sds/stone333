@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.lcserve.mapper.TransOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.lcserve.entity.TransOrder">
+            <id property="oid" column="oid" jdbcType="INTEGER"/>
+            <result property="gid" column="gid" jdbcType="INTEGER"/>
+            <result property="uid" column="uid" jdbcType="INTEGER"/>
+            <result property="onumber" column="onumber" jdbcType="VARCHAR"/>
+            <result property="oprice" column="oprice" jdbcType="DECIMAL"/>
+            <result property="ordtime" column="ordtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="charResult" type="com.lc.lcserve.vo.ChartVo">
+        <result property="gname" column="gname" jdbcType="VARCHAR"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="person" column="person" jdbcType="INTEGER"/>
+        <result property="sum" column="total" jdbcType="INTEGER"/>
+        <result property="time" column="lastTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+<!--    <sql id="Base_Column_List">-->
+<!--        oid,gid,uid,-->
+<!--        onumber,oprice,ordtime-->
+<!--    </sql>-->
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+            oid,gid,uid,
+            onumber,oprice,ordtime
+        from trans_order
+        where  oid = #{oid,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from trans_order
+        where  oid = #{oid,jdbcType=INTEGER} 
+    </delete>
+
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lc.lcserve.entity.TransOrder" useGeneratedKeys="true">
+        insert into trans_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="oid != null">oid,</if>
+                <if test="gid != null">gid,</if>
+                <if test="uid != null">uid,</if>
+                <if test="onumber != null">onumber,</if>
+                <if test="oprice != null">oprice,</if>
+                <if test="ordtime != null">ordtime,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="oid != null"> #{oid,jdbcType=INTEGER},</if>
+                <if test="gid != null"> #{gid,jdbcType=INTEGER},</if>
+                <if test="uid != null"> #{uid,jdbcType=INTEGER},</if>
+                <if test="onumber != null"> #{onumber,jdbcType=VARCHAR},</if>
+                <if test="oprice != null"> #{oprice,jdbcType=DECIMAL},</if>
+                <if test="ordtime != null"> #{ordtime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lc.lcserve.entity.TransOrder">
+        update trans_order
+        <set>
+                <if test="gid != null">
+                    gid = #{gid,jdbcType=INTEGER},
+                </if>
+                <if test="uid != null">
+                    uid = #{uid,jdbcType=INTEGER},
+                </if>
+                <if test="onumber != null">
+                    onumber = #{onumber,jdbcType=VARCHAR},
+                </if>
+                <if test="oprice != null">
+                    oprice = #{oprice,jdbcType=DECIMAL},
+                </if>
+                <if test="ordtime != null">
+                    ordtime = #{ordtime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   oid = #{oid,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lc.lcserve.entity.TransOrder">
+        update trans_order
+        set 
+            gid =  #{gid,jdbcType=INTEGER},
+            uid =  #{uid,jdbcType=INTEGER},
+            onumber =  #{onumber,jdbcType=VARCHAR},
+            oprice =  #{oprice,jdbcType=DECIMAL},
+            ordtime =  #{ordtime,jdbcType=TIMESTAMP}
+        where   oid = #{oid,jdbcType=INTEGER} 
+    </update>
+
+
+
+    <select id="selectChars"  resultMap="charResult">
+        SELECT
+            a.gname,
+            sum(b.onumber) as number,
+            a.gprice as price,
+            count(DISTINCT b.uid) as person,
+            sum(b.oprice) as total,
+            max(b.ordtime) as lastTime
+        from
+            trans_goods a LEFT JOIN trans_order b
+            on a.gid = b.gid
+            where b.gid is not null
+            GROUP BY b.gid
+    </select>
+</mapper>

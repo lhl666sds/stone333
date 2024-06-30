@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.lcserve.mapper.HomeInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.lcserve.entity.HomeInfo">
+            <id property="infoid" column="infoid" jdbcType="INTEGER"/>
+            <result property="infoname" column="infoname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+<!--    <sql id="Base_Column_List">-->
+<!--        infoid,infoname,infoimg-->
+<!--    </sql>-->
+</mapper>

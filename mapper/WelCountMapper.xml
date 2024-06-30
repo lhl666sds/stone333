@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.lcserve.mapper.WelCountMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.lcserve.entity.WelCount">
+            <id property="weid" column="weid" jdbcType="INTEGER"/>
+            <result property="wname" column="wname" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="organization" column="organization" jdbcType="VARCHAR"/>
+            <result property="others" column="others" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+<!--    <sql id="Base_Column_List">-->
+<!--        weid,wname,phone,-->
+<!--        organization,others,create_time-->
+<!--    </sql>-->
+</mapper>
